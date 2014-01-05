@@ -53,7 +53,7 @@
       element = this.createElementFor("#stream-playing-template", {
         stream: stream
       });
-      $("#stream-player").jPlayer({
+      $("#jquery_jplayer_1").jPlayer({
         ready: function(event) {
           return $(this).jPlayer("setMedia", {
             mp3: "http://jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3"
