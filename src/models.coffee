@@ -1,6 +1,19 @@
-#<< models/blog_post
-#<< models/podcast
-#<< models/podcast_episode
-#<< models/playlist_item
-#<< models/stream
-#<< models/user
+class BlogPost
+  constructor: (@id, @title, @content, @author) ->
+
+class PlaylistItem
+  constructor: (@id, @episode) ->
+
+class Podcast
+  constructor: (@id, @title, @description, @author, @episodeCount) ->
+
+class User
+  constructor: (@id, @login) ->
+
+class PodcastEpisode
+  constructor: (@id, @number, @title, @podcast, @source) ->
+    @type = "file"
+
+class Stream
+  constructor: (@id, @source, @title) ->
+    @type = "stream"
