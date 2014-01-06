@@ -3,6 +3,9 @@ class Gui
 
     @confirmStreamButton = $("#submit-stream-button")
     @confirmStreamButton.click( => @confirmStreamButtonClicked($("#stream").val()))
+    $("#podcasts-playlist").sortable()
+    $("#podcasts-playlist").selectable()
+    $('#accordion').accordion()
 
   createElementFor: (templateId, data) =>
     source = $(templateId).html()
