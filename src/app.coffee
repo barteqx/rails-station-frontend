@@ -3,15 +3,36 @@
 #<< use_case
 #<< gui
 #<< glue
-#<< fake_server_side
 #<< models
+#<< fake_server_side
+#<< playlist_gui
+#<< blog_gui
+#<< podcasts_gui
+#<< blog_usecase
+#<< podcasts_usecase
+#<< playlist_usecase
+
 
 class App
   constructor: ->
-    useCase      = new UseCase()
-    gui          = new Gui()
+
+
+    #usecases
+    useCases = [ new UseCase(),
+                 new BlogUseCase(),
+                 new PodcastsUseCase(),
+                 new PlaylistUseCase() 
+               ]
+
+    #GUIs
+    GUIs = [ new Gui(),
+             new PlaylistGUI(),
+             new BlogGUI(),
+             new PodcastsGUI() 
+           ]
+
     server_side  = new FakeServerSide()
-    glue         = new Glue(useCase, gui, server_side)
+    glue         = new Glue(useCases, GUIs, server_side)
     
     useCase.start()
     window.useCase = useCase

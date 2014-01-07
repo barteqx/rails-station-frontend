@@ -1,14 +1,10 @@
-* {
-  font-family: 'Ubuntu', 'Helvetica', 'Segoe UI';
-}
-
 div.ask-for-stream {
   padding-top: 30px;
   padding-left: 30px;
   display: inline;
 }
 
-div#jp_container_1 {
+div#player_bar {
   position: fixed;
   display: inline-block;
 }
@@ -28,25 +24,18 @@ div#playlist {
   display: inline-block;
   height: 100%;
   left: 83.33%;
-  background-color: #DDDDFF;
-  border-left: solid;
-  border-left-width: 1px;
-  border-color: #00F;
-
 }
 
 .playlist-item:hover {
   border-style: solid;
   background-color: #00F;
   color: #FFF;
+  border-color: 
 }
 
 .playlist-item {
-  border: solid;
-  border-width: 1px;
-  background-color: #FFF;
-  border-color: #00F;
-  color: #000;
+  background-color: #000;
+  color: #FFF;
   padding: 5px;
   margin-bottom: 5px;
 }
@@ -72,3 +61,34 @@ div#playlist-options {
   padding-bottom: 15px;
   text-align: center;
 }
+
+div.content {
+  font-family: 'Ubuntu', 'Helvetica', 'Segoe UI';
+}
+
+div#titlebar {
+  height: 100px;
+}
+div#play_livestream {
+  background-color: #000;
+  color: #FFF;
+  height: 92px;
+  text-align: center;
+  display: inline-block;
+  padding-top: 20px;
+  margin-left: 0px;
+}
+
+div#play_livestream.live {
+  background-color: #F00;
+}
+
+div#play_livestream:hover {
+  background-color: #00F;
+}
+
+div#player_row {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+

@@ -1,5 +1,5 @@
 class BlogPost
-  constructor: (@id, @title, @content, @author) ->
+  constructor: (@id, @title, @content, @author, @published) ->
 
 class PlaylistItem
   constructor: (@id, @episode) ->

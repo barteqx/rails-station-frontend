@@ -1,19 +1,15 @@
-#<< playlist_gui
-#<< blog_gui
-#<< podcasts_gui
-
 class Gui
   constructor: ->
-
-    @playlistGUI = new PlaylistGUI(@)
-    @blogGUI = new BlogGUI(@)
-    @podcastsGUI = new PodcastsGUI(@)
 
     @confirmStreamButton = $("#submit-stream-button")
     @confirmStreamButton.click( => @confirmStreamButtonClicked(new Stream(1,$("#stream").val(), "Test")))
     $("#podcasts-playlist").sortable()
     $("#podcasts-playlist").selectable()
-    @player = $("#jp_container_1")
+    $('#play_livestream').click( => @getLiveStream())
+    @playerUI = $("#jp_container_1")
+    @player = $("#jquery_jplayer_1")
+
+    
 
   createElementFor: (templateId, data) =>
     source = $(templateId).html()
@@ -23,18 +19,22 @@ class Gui
 
   refreshPlayer: (source) =>
 
+    @player.jPlayer "clearMedia"
+
     if (source.type == "stream")
-      @player.removeClass("jp-audio")
-      @player.addClass("jp-audio-stream")
+      @playerUI.removeClass("jp-audio")
+      @playerUI.addClass("jp-audio-stream")
 
     else 
-      @player.removeClass("jp-audio-stream")
-      @player.addClass("jp-audio")
+      @playerUI.removeClass("jp-audio-stream")
+      @playerUI.addClass("jp-audio")
 
     stream = source.source
 
+    @player.jPlayer "setMedia", mp3: stream
     console.log(stream)
-    $("#jquery_jplayer_1").jPlayer
+    
+    @player.jPlayer
       ready: ->
         $(this).jPlayer "setMedia",
           mp3: stream
@@ -46,6 +46,13 @@ class Gui
     $("#track_title").text(source.title)
     
   confirmStreamButtonClicked: (stream) =>
-    $("#jquery_jplayer_1").jPlayer "clearMedia"
     @refreshPlayer(stream)
+
+  getLiveStream: =>
+
+  login: (login, password) =>
+
+  loginUnsuccessful: =>
+
+  loginSuccessful: (user) =>
     

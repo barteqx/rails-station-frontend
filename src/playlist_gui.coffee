@@ -1,5 +1,5 @@
 class PlaylistGUI
-  constructor: (@mainGUI) ->
+  constructor: ->
 
     $("#playlist-options").buttonset()
 

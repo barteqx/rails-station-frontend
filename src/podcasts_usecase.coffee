@@ -1,0 +1,2 @@
+class PodcastsUseCase
+  constructor: ->

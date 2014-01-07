@@ -1,5 +1,5 @@
 class PodcastsGUI
-  constructor: (@mainGUI) ->
+  constructor: ->
 
   createElementFor: (templateId, data) =>
     source = $(templateId).html()
