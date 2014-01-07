@@ -1,7 +1,6 @@
 (function() {
-  var Glue;
 
-  Glue = (function() {
+  this.Glue = (function() {
 
     function Glue(useCases, GUIs, server_side) {
       var _this = this;
@@ -16,6 +15,15 @@
       });
       After(this.gui, "getLiveStream", function() {
         return _this.gui.refreshPlayer(_this.server_side.getInitialStream());
+      });
+      After(this.gui, "loginUser", function(login, password) {
+        return _this.server_side.loginUser(login, password);
+      });
+      After(this.server_side, "loginSuccessful", function(user) {
+        return _this.gui.loginSuccessful(user);
+      });
+      After(this.server_side, "loginUnsuccessful", function() {
+        return _this.gui.loginUnsuccessful();
       });
       LogAll(this.useCase);
       LogAll(this.gui);

@@ -1,4 +1,4 @@
-class PodcastsGUI
+class @PodcastsGUI
   constructor: ->
 
   createElementFor: (templateId, data) =>

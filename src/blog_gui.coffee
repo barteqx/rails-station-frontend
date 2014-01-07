@@ -1,4 +1,4 @@
-class BlogGUI
+class @BlogGUI
   constructor: ->
 
     @getPosts(0, 4)

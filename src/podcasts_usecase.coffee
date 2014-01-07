@@ -1,2 +1,2 @@
-class PodcastsUseCase
+class @PodcastsUseCase
   constructor: ->

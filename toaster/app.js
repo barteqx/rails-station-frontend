@@ -9,7 +9,7 @@
       useCases = [new UseCase(), new BlogUseCase(), new PodcastsUseCase(), new PlaylistUseCase()];
     }
 
-    GUIs = [new Gui(), new PlaylistGUI(), new BlogGUI(), new PodcastsGUI()];
+    GUIs = [new GUI(), new PlaylistGUI(), new BlogGUI(), new PodcastsGUI()];
 
     return App;
 
@@ -21,7 +21,7 @@
 
   useCases[0].start();
 
-  window.useCase = useCase;
+  window.useCase = useCases[0];
 
   $(document).ready(function() {
     new App();

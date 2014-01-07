@@ -1,4 +1,4 @@
-class PlaylistGUI
+class @PlaylistGUI
   constructor: ->
 
     $("#playlist-options").buttonset()

@@ -1,2 +1,2 @@
-class PlaylistUseCase
+class @PlaylistUseCase
   constructor: ->

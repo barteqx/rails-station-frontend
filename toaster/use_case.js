@@ -1,8 +1,7 @@
 (function() {
-  var UseCase,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  UseCase = (function() {
+  this.UseCase = (function() {
 
     function UseCase() {
       this.streamProvided = __bind(this.streamProvided, this);

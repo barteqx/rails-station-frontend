@@ -1,4 +1,4 @@
-class Gui
+class @GUI
   constructor: ->
 
     @confirmStreamButton = $("#submit-stream-button")
@@ -8,8 +8,6 @@ class Gui
     $('#play_livestream').click( => @getLiveStream())
     @playerUI = $("#jp_container_1")
     @player = $("#jquery_jplayer_1")
-
-    
 
   createElementFor: (templateId, data) =>
     source = $(templateId).html()
@@ -50,7 +48,7 @@ class Gui
 
   getLiveStream: =>
 
-  login: (login, password) =>
+  loginUser: (login, password) =>
 
   loginUnsuccessful: =>
 

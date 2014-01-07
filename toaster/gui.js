@@ -1,15 +1,14 @@
 (function() {
-  var Gui,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  Gui = (function() {
+  this.GUI = (function() {
 
-    function Gui() {
+    function GUI() {
       this.loginSuccessful = __bind(this.loginSuccessful, this);
 
       this.loginUnsuccessful = __bind(this.loginUnsuccessful, this);
 
-      this.login = __bind(this.login, this);
+      this.loginUser = __bind(this.loginUser, this);
 
       this.getLiveStream = __bind(this.getLiveStream, this);
 
@@ -33,7 +32,7 @@
       this.player = $("#jquery_jplayer_1");
     }
 
-    Gui.prototype.createElementFor = function(templateId, data) {
+    GUI.prototype.createElementFor = function(templateId, data) {
       var element, html, source, template;
       source = $(templateId).html();
       template = Handlebars.compile(source);
@@ -41,7 +40,7 @@
       return element = $(html);
     };
 
-    Gui.prototype.refreshPlayer = function(source) {
+    GUI.prototype.refreshPlayer = function(source) {
       var stream;
       this.player.jPlayer("clearMedia");
       if (source.type === "stream") {
@@ -71,19 +70,19 @@
       return $("#track_title").text(source.title);
     };
 
-    Gui.prototype.confirmStreamButtonClicked = function(stream) {
+    GUI.prototype.confirmStreamButtonClicked = function(stream) {
       return this.refreshPlayer(stream);
     };
 
-    Gui.prototype.getLiveStream = function() {};
+    GUI.prototype.getLiveStream = function() {};
 
-    Gui.prototype.login = function(login, password) {};
+    GUI.prototype.loginUser = function(login, password) {};
 
-    Gui.prototype.loginUnsuccessful = function() {};
+    GUI.prototype.loginUnsuccessful = function() {};
 
-    Gui.prototype.loginSuccessful = function(user) {};
+    GUI.prototype.loginSuccessful = function(user) {};
 
-    return Gui;
+    return GUI;
 
   })();
 

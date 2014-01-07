@@ -1,4 +1,4 @@
-class FakeServerSide
+class @FakeServerSide
   constructor: ->
 
   getInitialStream: =>
@@ -13,3 +13,15 @@ class FakeServerSide
     new BlogPost(2, "Test fake post", "<b>Fake post no. 2.</b>", user),
     new BlogPost(2, "Test fake post", "<b>Fake post no. 3.</b>", user),
     new BlogPost(2, "Test fake post", "<b>Fake post no. 4.</b>", user)]
+
+  loginUser: (login, password) =>
+    if login == "xyz" and password == "abc"
+      @loginSuccesful(new User(1, "xyz"))
+
+    else
+      @loginUnsuccessful()
+
+
+  loginSuccesful: (user) =>
+
+  loginUnsuccessful: => 
