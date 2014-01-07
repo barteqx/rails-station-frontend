@@ -5,20 +5,32 @@
   Gui = (function() {
 
     function Gui() {
-      this.hideStream = __bind(this.hideStream, this);
+      this.loginSuccessful = __bind(this.loginSuccessful, this);
 
-      this.restartClicked = __bind(this.restartClicked, this);
+      this.loginUnsuccessful = __bind(this.loginUnsuccessful, this);
 
-      this.showStream = __bind(this.showStream, this);
+      this.login = __bind(this.login, this);
 
-      this.hideAskForStream = __bind(this.hideAskForStream, this);
+      this.getLiveStream = __bind(this.getLiveStream, this);
 
       this.confirmStreamButtonClicked = __bind(this.confirmStreamButtonClicked, this);
 
-      this.showAskForStream = __bind(this.showAskForStream, this);
+      this.refreshPlayer = __bind(this.refreshPlayer, this);
 
       this.createElementFor = __bind(this.createElementFor, this);
 
+      var _this = this;
+      this.confirmStreamButton = $("#submit-stream-button");
+      this.confirmStreamButton.click(function() {
+        return _this.confirmStreamButtonClicked(new Stream(1, $("#stream").val(), "Test"));
+      });
+      $("#podcasts-playlist").sortable();
+      $("#podcasts-playlist").selectable();
+      $('#play_livestream').click(function() {
+        return _this.getLiveStream();
+      });
+      this.playerUI = $("#jp_container_1");
+      this.player = $("#jquery_jplayer_1");
     }
 
     Gui.prototype.createElementFor = function(templateId, data) {
@@ -29,52 +41,47 @@
       return element = $(html);
     };
 
-    Gui.prototype.showAskForStream = function() {
-      var confirmStreamButton, element,
-        _this = this;
-      element = this.createElementFor("#ask-for-stream-template");
-      $(".main").append(element);
-      confirmStreamButton = $("#submit-stream-button");
-      confirmStreamButton.click(function() {
-        return _this.confirmStreamButtonClicked($("#stream").val());
+    Gui.prototype.refreshPlayer = function(source) {
+      var stream;
+      this.player.jPlayer("clearMedia");
+      if (source.type === "stream") {
+        this.playerUI.removeClass("jp-audio");
+        this.playerUI.addClass("jp-audio-stream");
+      } else {
+        this.playerUI.removeClass("jp-audio-stream");
+        this.playerUI.addClass("jp-audio");
+      }
+      stream = source.source;
+      this.player.jPlayer("setMedia", {
+        mp3: stream
       });
-      return $("#stream").focus();
-    };
-
-    Gui.prototype.confirmStreamButtonClicked = function(stream) {};
-
-    Gui.prototype.hideAskForStream = function() {
-      return $(".ask-for-stream").remove();
-    };
-
-    Gui.prototype.showStream = function(stream) {
-      var element,
-        _this = this;
-      element = this.createElementFor("#stream-playing-template", {
-        stream: stream
-      });
-      $("#jquery_jplayer_1").jPlayer({
-        ready: function(event) {
+      console.log(stream);
+      this.player.jPlayer({
+        ready: function() {
           return $(this).jPlayer("setMedia", {
-            mp3: "http://jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3"
+            mp3: stream
           });
         },
-        preload: "auto",
-        swfPath: "/",
-        solution: "html, flash",
-        supplied: 'mp3'
+        stop: function() {
+          return $(this).jPlayer("clearMedia");
+        },
+        swfPath: "/js",
+        supplied: "mp3"
       });
-      $(".main").append(element);
-      return $("#restart-link").click(function() {
-        return _this.restartClicked();
-      });
+      return $("#track_title").text(source.title);
     };
 
-    Gui.prototype.restartClicked = function() {};
-
-    Gui.prototype.hideStream = function() {
-      return $(".greet-message").remove();
+    Gui.prototype.confirmStreamButtonClicked = function(stream) {
+      return this.refreshPlayer(stream);
     };
+
+    Gui.prototype.getLiveStream = function() {};
+
+    Gui.prototype.login = function(login, password) {};
+
+    Gui.prototype.loginUnsuccessful = function() {};
+
+    Gui.prototype.loginSuccessful = function(user) {};
 
     return Gui;
 

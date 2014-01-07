@@ -16,13 +16,15 @@
 class App
   constructor: ->
 
-
+    console.log("test")
     #usecases
     useCases = [ new UseCase(),
                  new BlogUseCase(),
                  new PodcastsUseCase(),
                  new PlaylistUseCase() 
                ]
+
+    console.log("test")
 
     #GUIs
     GUIs = [ new Gui(),
@@ -34,8 +36,8 @@ class App
     server_side  = new FakeServerSide()
     glue         = new Glue(useCases, GUIs, server_side)
     
-    useCase.start()
-    window.useCase = useCase
+    useCases[0].start()
+    window.useCase = useCase[0]
 
 $(document).ready ->
   new App()
