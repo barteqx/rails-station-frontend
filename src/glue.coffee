@@ -1,8 +1,8 @@
 class Glue
   constructor: (useCases, GUIs, @server_side)->
     
-    @useCase, @blogUseCase, @podcastsUseCase, @playlistUseCase = useCases
-    @gui, @playlistGUI, @blogGUI, @podcastsGUI = GUIs
+    [@useCase, @blogUseCase, @podcastsUseCase, @playlistUseCase] = useCases
+    [@gui, @playlistGUI, @blogGUI, @podcastsGUI] = GUIs
 
     After(@gui, "confirmStreamButtonClicked", (stream) => @useCase.streamProvided(stream))
     After(@useCase, "start", => @gui.refreshPlayer(@server_side.getInitialStream()))
