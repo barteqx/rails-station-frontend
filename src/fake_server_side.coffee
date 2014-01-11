@@ -1,5 +1,6 @@
 class @FakeServerSide
   constructor: ->
+    @user = null
 
   getInitialStream: =>
     new Stream(0, "http://188.40.32.140:8172/stream", "Kontestacja")
@@ -23,5 +24,9 @@ class @FakeServerSide
 
 
   loginSuccesful: (user) =>
+    @user = user
 
   loginUnsuccessful: => 
+
+  logOut: =>
+    @user = null

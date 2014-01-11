@@ -1,7 +1,6 @@
 (function() {
-  var BlogPost, PlaylistItem, Podcast, PodcastEpisode, Stream, User;
 
-  BlogPost = (function() {
+  this.BlogPost = (function() {
 
     function BlogPost(id, title, content, author, published) {
       this.id = id;
@@ -15,7 +14,7 @@
 
   })();
 
-  PlaylistItem = (function() {
+  this.PlaylistItem = (function() {
 
     function PlaylistItem(id, episode) {
       this.id = id;
@@ -26,7 +25,7 @@
 
   })();
 
-  Podcast = (function() {
+  this.Podcast = (function() {
 
     function Podcast(id, title, description, author, episodeCount) {
       this.id = id;
@@ -40,7 +39,7 @@
 
   })();
 
-  User = (function() {
+  this.User = (function() {
 
     function User(id, login) {
       this.id = id;
@@ -51,7 +50,7 @@
 
   })();
 
-  PodcastEpisode = (function() {
+  this.PodcastEpisode = (function() {
 
     function PodcastEpisode(id, number, title, podcast, source) {
       this.id = id;
@@ -66,7 +65,7 @@
 
   })();
 
-  Stream = (function() {
+  this.Stream = (function() {
 
     function Stream(id, source, title) {
       this.id = id;

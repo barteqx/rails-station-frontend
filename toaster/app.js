@@ -1,27 +1,21 @@
 (function() {
-  var App, glue, server_side;
+  var App;
 
   App = (function() {
-    var GUIs;
 
     function App() {
-      var useCases;
-      useCases = [new UseCase(), new BlogUseCase(), new PodcastsUseCase(), new PlaylistUseCase()];
+      var glue, guis, server_side, use_cases;
+      use_cases = [new UseCase(), new BlogUseCase(), new PodcastsUseCase(), new PlaylistUseCase()];
+      guis = [new GUI(), new PlaylistGUI(), new BlogGUI(), new PodcastsGUI()];
+      server_side = new FakeServerSide();
+      glue = new Glue(use_cases, guis, server_side);
+      use_cases[0].start();
+      window.useCase = use_cases[0];
     }
-
-    GUIs = [new GUI(), new PlaylistGUI(), new BlogGUI(), new PodcastsGUI()];
 
     return App;
 
   })();
-
-  server_side = new FakeServerSide();
-
-  glue = new Glue(useCases, GUIs, server_side);
-
-  useCases[0].start();
-
-  window.useCase = useCases[0];
 
   $(document).ready(function() {
     new App();
