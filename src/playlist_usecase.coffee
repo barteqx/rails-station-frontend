@@ -3,7 +3,7 @@ class @PlaylistUseCase
     @loop = false
     @delete_after_listened = false
     @playlist = []
-    @current = null
+    @current = null #integer pointing to a position (on playlist) currently being played
     @playing = false
 
   addEpisode: (episode) =>

@@ -7,52 +7,55 @@ class @FakeServerSide
     @podcasts = []
     @playlist = []
     @episodes = {}
-    
+
   getStream: =>
     new Stream(0, "http://188.40.32.140:8172/stream", "Kontestacja")
 
   checkAutoPlay: =>
     true
 
+  #blog operations
   getPosts: (fromNumber = 0, amount = 4) =>
-    @rcvdPosts(@posts)
 
-  rcvdPosts: (posts) =>
-
-  sendPost: (post) =>
+  addPost: (post) =>
     @posts.shift(post)
+
+  editPost: (post) =>
 
   deletePost: (post) =>
 
+  #podcast catalog operations
   getPodcasts: =>
-    rcvdPodcast(@podcasts)
-
-  rcvdPodcast: (podcasts) =>
 
   deletePodcast: (podcast) =>
 
+  addPodcast: (podcast) =>
+
+  editPodcast: (podcast) =>
+
   getPodcastEpisodes: (podcast, fromNumber = 0, amount = 10) =>
-    rcvdPodcastEpisodes(episodes[podcast.id])
 
-  rcvdPodcastEpisodes: (episodes) =>
+  deletePodcastEpisode: (episodes) =>
 
-  deletePodcastEpisodes: (episodes) =>
+  addPodcastEpisode: (episode) =>
 
+  editPodcastEpisode: (episode) =>
+
+  #admin operations
   getUsers: =>
-    rcvdUsers(@users)
 
-  rcvdUsers: (users) =>
-
-  alterUser: (user, operation) =>
+  editUser: (user, operation) =>
 
   deleteUser: (user) =>
 
   addUser: (nick, password, email) =>
 
+  #playlist operations
   getPlaylist: =>
 
-  rcvdPlaylist: (playlist) =>
-    
+  savePlaylist: (playlist) =>
+
+  #login operations  
   loginUser: (login, password) =>
     if login == "xyz" and password == "abc"
       @loginSuccesful(new User(1, "xyz"))
