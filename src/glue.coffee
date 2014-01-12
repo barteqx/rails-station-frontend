@@ -38,13 +38,17 @@ class @Glue
     After(@playlistGUI, "stop", => @playlistUseCase.stop())
 
     After(@playlistGUI, "playNext", => @playlistUseCase.playNext())
-    After(@playlistGUI, "popEpisode", (episode_id) => @playlistUseCase.popEpisode(episode_id))
+    After(@playlistGUI, "popEpisode", (i) => @playlistUseCase.popEpisode(i))
+    After(@playlistGUI, "changeEpisode", (n) => @playlistUseCase.changeEpisode(n))
 
     #Save playlist after modifications
     After(@playlistUseCase, "addEpisode", (episode) => @server_side.savePlaylist(@playlistUseCase.playlist))
     After(@playlistUseCase, "rearrange", (fromPos, toPos) => @server_side.savePlaylist(@playlistUseCase.playlist))
     After(@playlistUseCase, "popEpisode", (i) => @server_side.savePlaylist(@playlistUseCase.playlist))
+    After(@playlistUseCase, "changeEpisode", (i) => @server_side.savePlaylist(@playlistUseCase.playlist))
     After(@playlistUseCase, "playNext", => @server_side.savePlaylist(@playlistUseCase.playlist))
+
+
 
     LogAll(@useCase)
     LogAll(@podcastsUseCase)

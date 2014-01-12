@@ -47,6 +47,9 @@ class @PlaylistUseCase
   currentEpisode: =>
     @playlist[current]
 
+  changeEpisode: (n) =>
+    @playlist[current] = n % @playlist.episodes.length
+
   play: =>
     @playlist.current = 0 if @playlist.current == null else @playlist.current
     @playing = true
