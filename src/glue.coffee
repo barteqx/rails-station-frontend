@@ -6,7 +6,6 @@ class @Glue
 
     #Initial
     After(@useCase, "start", => @gui.refreshPlayer(@server_side.getStream()))
-
     #Login
     After(@gui, "loginUser", (login, password) => @useCase.loginUser(login, password))
     After(@useCase, "loginUser", (login, password) => @server_side.loginUser(login, password))
@@ -48,6 +47,15 @@ class @Glue
     After(@playlistUseCase, "changeEpisode", (i) => @server_side.savePlaylist(@playlistUseCase.playlist))
     After(@playlistUseCase, "playNext", => @server_side.savePlaylist(@playlistUseCase.playlist))
 
+    ### Admin Glue ###
+
+    #Adding a user
+    After(@adminGUI, "addUser", (login, email, password, admin) => @adminUseCase.addUser(login, email, password, admin))
+    After(@adminUseCase, "addUser", (login, email, password, admin) => @server_side.addUser(login, email, password, admin))
+
+    #Deleting a user
+    After(@adminGUI, "addUser", (user) => @adminUseCase.deleteUser(user))
+    After(@adminUseCase, "addUser", (login, email, password, admin) => @server_side.addUser(login, email, password, admin))
 
 
     LogAll(@useCase)

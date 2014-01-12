@@ -5,11 +5,15 @@ class @FakeServerSide
     user = new User(1, "tester", true)
     @posts = []
     @podcasts = []
-    @playlist = []
+    @playlist = {
+      current: null,
+      episodes: []
+    }
     @episodes = {}
+    @stream = new Stream(0, "http://188.40.32.140:8172/stream", "Kontestacja")
 
   getStream: =>
-    new Stream(0, "http://188.40.32.140:8172/stream", "Kontestacja")
+    @stream
 
   checkAutoPlay: =>
     true
@@ -26,10 +30,12 @@ class @FakeServerSide
 
   #podcast catalog operations
   getPodcasts: =>
+    @podcasts
 
   deletePodcast: (podcast) =>
 
   addPodcast: (podcast) =>
+    @podcast.shift(podcast)
 
   editPodcast: (podcast) =>
 
@@ -44,11 +50,21 @@ class @FakeServerSide
   #admin operations
   getUsers: =>
 
-  editUser: (user, changes) =>
+  editUser: (user) =>
 
   deleteUser: (user) =>
+    delete @users[user.login]
 
-  addUser: (nick, password, email) =>
+  addUser: (login, email, password, admin) =>
+    @users[login] = {
+      user: new User(new Date().getTime(), login, email, admin),
+      password: password
+    }
+
+  getAdminStream: =>
+    @getStream()
+
+  setAdminStream: (@stream) => 
 
   #playlist operations
   getPlaylist: =>
@@ -56,10 +72,9 @@ class @FakeServerSide
   savePlaylist: (playlist) =>
 
   #login operations  
-  loginUser: (login, password) =>
-    if login == "xyz" and password == "abc"
-      @loginSuccesful(new User(1, "xyz"))
-
+  loginUser: (login, pass) =>
+    if @users[login][password] == pass
+      @loginSuccesful @users[login][user]
     else
       @loginUnsuccessful("Authentication failed - try again.")
 

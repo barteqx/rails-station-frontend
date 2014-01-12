@@ -8,7 +8,7 @@ class @Podcast
   constructor: (@id, @title, @description, @author, @episodeCount) ->
 
 class @User
-  constructor: (@id, @login, @email, @access = "user") ->
+  constructor: (@id, @login, @email, @admin = false) ->
 
 class @PodcastEpisode
   constructor: (@id, @number, @title, @podcast, @source) ->
