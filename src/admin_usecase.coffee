@@ -11,12 +11,10 @@ class @AdminUseCase
 
   getUsers: =>
 
-  rcvdUsers: (users) =>
-    @users = users
+  rcvdUsers: (@users) =>
 
   getStream: =>
 
   setStream: (stream) => 
 
-  rcvdStream: (stream) =>
-    @stream = stream
+  rcvdStream: (@stream) =>
