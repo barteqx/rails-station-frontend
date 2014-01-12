@@ -17,3 +17,6 @@ class @PodcastEpisode
 class @Stream
   constructor: (@id, @source, @title) ->
     @type = "stream"
+
+class @Alert
+  constructor: (@message) ->

@@ -1,10 +1,12 @@
 class @FakeServerSide
   constructor: ->
     @user = null
+    @users = []
     user = new User(1, "tester")
-    @posts = [new BlogPost(1, "Test fake post", "<b>Fake post no. 1.</b>", user), new BlogPost(2, "Test fake post", "<b>Fake post no. 2.</b>", user), new BlogPost(2, "Test fake post", "<b>Fake post no. 3.</b>", user), new BlogPost(2, "Test fake post", "<b>Fake post no. 4.</b>", user)]
+    @posts = []
     @podcasts = []
-    @episodes = []
+    @playlist = []
+    @episodes = {}
 
   getInitialStream: =>
     new Stream(0, "http://188.40.32.140:8172/stream", "Kontestacja")
@@ -27,10 +29,29 @@ class @FakeServerSide
 
   rcvdPodcast: (podcasts) =>
 
-  getPodcastEpisodes: (fromNumber = 0, amount = 10) =>
-    rcvdPodcastEpisodes(episodes)
+  deletePodcast: (podcast) =>
+
+  getPodcastEpisodes: (podcast, fromNumber = 0, amount = 10) =>
+    rcvdPodcastEpisodes(episodes[podcast.id])
 
   rcvdPodcastEpisodes: (episodes) =>
+
+  deletePodcastEpisodes: (episodes) =>
+
+  getUsers: =>
+    rcvdUsers(@users)
+
+  rcvdUsers: (users) =>
+
+  alterUser: (user, operation) =>
+
+  deleteUser: (user) =>
+
+  addUser: (nick, password, email) =>
+
+  getPlaylist: =>
+
+  rcvdPlaylist: (playlist) =>
     
   loginUser: (login, password) =>
     if login == "xyz" and password == "abc"
@@ -47,3 +68,5 @@ class @FakeServerSide
 
   logOut: =>
     @user = null
+
+  showAlert: (alert) =>
