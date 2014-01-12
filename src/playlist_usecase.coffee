@@ -41,6 +41,16 @@ class @PlaylistUseCase
   currentEpisode: =>
     @playlist[current]
 
+  play: =>
+    @playing = true if @current != null
+
+  pause: =>
+    @playing = false
+
+  stop: =>
+    @current = null
+    @playing = false
+
   playNext: =>
     if @loop
       @current = (@current + 1) % @playlist.length
