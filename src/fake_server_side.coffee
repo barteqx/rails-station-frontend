@@ -4,7 +4,7 @@ class @FakeServerSide
     @users = []
     user = new User(1, "tester", true)
     @posts = []
-    @podcasts = []
+    @podcasts  = []
     @playlist = {
       current: null,
       episodes: []
@@ -36,14 +36,18 @@ class @FakeServerSide
 
   addPodcast: (podcast) =>
     @podcast.shift(podcast)
+    @episodes[podcast.id] = []
 
   editPodcast: (podcast) =>
 
   getPodcastEpisodes: (podcast, fromNumber = 0, amount = 10) =>
+    @episodes[podcast].slice(fromNumber, amount)
 
   deletePodcastEpisode: (episodes) =>
+    @episodes[episode.podcast].unshift()
 
   addPodcastEpisode: (episode) =>
+    @episodes[episode.podcast].shift(episode)
 
   editPodcastEpisode: (episode) =>
 
@@ -56,10 +60,12 @@ class @FakeServerSide
     delete @users[user.login]
 
   addUser: (login, email, password, admin) =>
-    @users[login] = {
-      user: new User(new Date().getTime(), login, email, admin),
-      password: password
-    }
+    if not @users[login]
+      @users[login] = {
+        user: new User(new Date().getTime(), login, email, admin),
+        password: password
+      }
+    else showAlert new Alert("User already exists")
 
   getAdminStream: =>
     @getStream()
@@ -76,14 +82,14 @@ class @FakeServerSide
     if @users[login][password] == pass
       @loginSuccesful @users[login][user]
     else
-      @loginUnsuccessful("Authentication failed - try again.")
+      @loginUnsuccessful "Authentication failed - try again."
 
 
   loginSuccesful: (user) =>
     @user = user
 
   loginUnsuccessful: (message) => 
-    @showAlert Alert(message)
+    @showAlert new Alert(message)
 
   logOut: =>
     @user = null
