@@ -1,8 +1,8 @@
 class @Glue
   constructor: (useCases, GUIs, @server_side)->
     
-    [@useCase, @blogUseCase, @podcastsUseCase, @playlistUseCase] = useCases
-    [@gui, @playlistGUI, @blogGUI, @podcastsGUI] = GUIs
+    [@useCase, @blogUseCase, @podcastsUseCase, @playlistUseCase, @adminUseCase] = useCases
+    [@gui, @playlistGUI, @blogGUI, @podcastsGUI, @adminGUI] = GUIs
 
     #Initial
     After(@useCase, "start", => @gui.refreshPlayer(@server_side.getStream()))

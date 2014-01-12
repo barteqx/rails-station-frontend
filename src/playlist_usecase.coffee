@@ -1,2 +1,3 @@
 class @PlaylistUseCase
   constructor: ->
+    @playlist = []

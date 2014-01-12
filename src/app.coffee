@@ -11,14 +11,16 @@
 #<< blog_usecase
 #<< podcasts_usecase
 #<< playlist_usecase
+#<< admin_gui
+#<< admin_usecase
 
 
 class App
   constructor: ->
 
-    use_cases = [ new UseCase(), new BlogUseCase(), new PodcastsUseCase(), new PlaylistUseCase()]
+    use_cases = [ new UseCase(), new BlogUseCase(), new PodcastsUseCase(), new PlaylistUseCase(), new AdminUseCase]
 
-    guis = [ new GUI(), new PlaylistGUI(), new BlogGUI(), new PodcastsGUI()]
+    guis = [ new GUI(), new PlaylistGUI(), new BlogGUI(), new PodcastsGUI(), new AdminGUI]
 
     server_side  = new FakeServerSide()
     glue         = new Glue(use_cases, guis, server_side)

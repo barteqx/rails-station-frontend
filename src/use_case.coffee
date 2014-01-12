@@ -2,6 +2,7 @@ class @UseCase
   constructor: ->
     @stream = null
     @playing_playlist = false
+    @user = null
     
   start: =>
     @getInitialData()

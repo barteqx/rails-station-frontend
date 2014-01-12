@@ -1,2 +1,3 @@
 class @BlogUseCase
   constructor: ->
+    @posts = []

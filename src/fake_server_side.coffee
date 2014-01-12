@@ -7,7 +7,7 @@ class @FakeServerSide
     @podcasts = []
     @playlist = []
     @episodes = {}
-
+    
   getStream: =>
     new Stream(0, "http://188.40.32.140:8172/stream", "Kontestacja")
 
