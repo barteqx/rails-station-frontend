@@ -44,9 +44,6 @@ class @Glue
     After(@playlistUseCase, "addEpisode", (episode) => @server_side.savePlaylist(@playlistUseCase.playlist))
     After(@playlistUseCase, "rearrange", (fromPos, toPos) => @server_side.savePlaylist(@playlistUseCase.playlist))
     After(@playlistUseCase, "popEpisode", (i) => @server_side.savePlaylist(@playlistUseCase.playlist))
-    After(@playlistUseCase, "deleteAfterListened", => @server_side.savePlaylist(@playlistUseCase.playlist))
-    After(@playlistUseCase, "toggleDeleteAfterListened", => @server_side.savePlaylist(@playlistUseCase.playlist))
-    After(@playlistUseCase, "toggleLoop", => @server_side.savePlaylist(@playlistUseCase.playlist))
     After(@playlistUseCase, "playNext", => @server_side.savePlaylist(@playlistUseCase.playlist))
 
     LogAll(@useCase)
