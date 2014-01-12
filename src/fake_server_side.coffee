@@ -2,7 +2,7 @@ class @FakeServerSide
   constructor: ->
     @user = null
     @users = []
-    user = new User(1, "tester")
+    user = new User(1, "tester", true)
     @posts = []
     @podcasts = []
     @playlist = []
@@ -44,7 +44,7 @@ class @FakeServerSide
   #admin operations
   getUsers: =>
 
-  editUser: (user, operation) =>
+  editUser: (user, changes) =>
 
   deleteUser: (user) =>
 

@@ -6,4 +6,4 @@ class @AdminUseCase
 
   deleteUser: (user) =>
 
-  alterUser: (user, changes) =>
+  editUser: (user, changes) =>
