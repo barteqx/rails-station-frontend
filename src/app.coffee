@@ -24,6 +24,7 @@ class App
 
     server_side  = new FakeServerSide()
     glue         = new Glue(use_cases, guis, server_side)
+    local_storage = new LocalStorage("station")
     
     use_cases[0].start()
     window.useCase = use_cases[0]

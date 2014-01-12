@@ -1,5 +1,5 @@
 class @Glue
-  constructor: (useCases, GUIs, @server_side)->
+  constructor: (useCases, GUIs, @server_side, @local_storage)->
     
     [@useCase, @blogUseCase, @podcastsUseCase, @playlistUseCase, @adminUseCase] = useCases
     [@gui, @playlistGUI, @blogGUI, @podcastsGUI, @adminGUI] = GUIs
@@ -27,7 +27,13 @@ class @Glue
     After(@gui, "getLiveStream", => @gui.refreshPlayer(@server_side.getStream()))
 
     LogAll(@useCase)
+    LogAll(@podcastsUseCase)
+    LogAll(@blogUseCase)
+    LogAll(@playlistUseCase)
+    LogAll(@adminUseCase)
+    
     LogAll(@gui)
     LogAll(@podcastsGUI)
     LogAll(@playlistGUI)
     LogAll(@blogGUI)
+    LogAll(@adminGUI)
