@@ -26,12 +26,35 @@ class @Glue
     #Get live stream
     After(@gui, "getLiveStream", => @gui.refreshPlayer(@server_side.getStream()))
 
+    ### Playlist Glue ###
+
+    After(@playlistUseCase, "getPlaylist", => rcvdPlaylist(@server_side.getPlaylist()))
+
+    After(@playlistGUI, "toggleLoop", => @playlistUseCase.toggleLoop())
+    After(@playlistGUI, "toggleDeleteAfterListened", => @playlistUseCase.toggleDeleteAfterListened())
+
+    After(@playlistGUI, "play", => @playlistUseCase.play())
+    After(@playlistGUI, "pause", => @playlistUseCase.pause())
+    After(@playlistGUI, "stop", => @playlistUseCase.stop())
+
+    After(@playlistGUI, "playNext", => @playlistUseCase.playNext())
+    After(@playlistGUI, "popEpisode", (episode_id) => @playlistUseCase.popEpisode(episode_id))
+
+    #Save playlist after modifications
+    After(@playlistUseCase, "addEpisode", (episode) => @server_side.savePlaylist(@playlistUseCase.playlist))
+    After(@playlistUseCase, "rearrange", (fromPos, toPos) => @server_side.savePlaylist(@playlistUseCase.playlist))
+    After(@playlistUseCase, "popEpisode", (i) => @server_side.savePlaylist(@playlistUseCase.playlist))
+    After(@playlistUseCase, "deleteAfterListened", => @server_side.savePlaylist(@playlistUseCase.playlist))
+    After(@playlistUseCase, "toggleDeleteAfterListened", => @server_side.savePlaylist(@playlistUseCase.playlist))
+    After(@playlistUseCase, "toggleLoop", => @server_side.savePlaylist(@playlistUseCase.playlist))
+    After(@playlistUseCase, "playNext", => @server_side.savePlaylist(@playlistUseCase.playlist))
+
     LogAll(@useCase)
     LogAll(@podcastsUseCase)
     LogAll(@blogUseCase)
     LogAll(@playlistUseCase)
     LogAll(@adminUseCase)
-    
+
     LogAll(@gui)
     LogAll(@podcastsGUI)
     LogAll(@playlistGUI)

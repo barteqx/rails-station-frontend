@@ -2,25 +2,31 @@ class @PlaylistUseCase
   constructor: ->
     @loop = false
     @delete_after_listened = false
-    @playlist = []
-    @current = null #integer pointing to a position (on playlist) currently being played
+    @playlist =  {
+      current: null,
+      episodes: []
+    }
     @playing = false
 
   addEpisode: (episode) =>
     @playlist.push(episode)
 
+  getPlaylist: (@playlist) =>
+
+  rcvdPlaylist: (@playlist) =>
+
   rearrange: (fromPos, toPos) =>
     elem = @playlist[fromPos]
     @playlist.removeAt(fromPos)
     @playlist.insert(elem, toPos)
-    if @current < toPos and @current > fromPos
-      @current -= 1
+    if @playlist.current < toPos and @playlist.current > fromPos
+      @playlist.current -= 1
 
-    else if @current >= toPos and @current < fromPos
-      @current += 1
+    else if @playlist.current >= toPos and @playlist.current < fromPos
+      @playlist.current += 1
 
-    else if @current == fromPos
-      @current = toPos
+    else if @playlist.current == fromPos
+      @playlist.current = toPos
 
   popEpisode: (i) =>
     @playlist.removeAt(i)
@@ -28,7 +34,7 @@ class @PlaylistUseCase
       @playNext()
 
   deleteAfterListened: =>
-    @popEpisode(@current) if @delete_after_listened
+    @popEpisode(@playlist.current) if @delete_after_listened
 
   toggleDeleteAfterListened: =>
     @loop = false if @loop else @loop
@@ -42,17 +48,18 @@ class @PlaylistUseCase
     @playlist[current]
 
   play: =>
-    @playing = true if @current != null
+    @playlist.current = 0 if @playlist.current == null else @playlist.current
+    @playing = true
 
   pause: =>
     @playing = false
 
   stop: =>
-    @current = null
+    @playlist.current = null
     @playing = false
 
   playNext: =>
     if @loop
-      @current = (@current + 1) % @playlist.length
+      @playlist.current = (@playlist.current + 1) % @playlist.length
     else
-      @current = @current + 1 if @current < @playlist.length else null
+      @playlist.current = @playlist.current + 1 if @playlist.current < @playlist.length else null
