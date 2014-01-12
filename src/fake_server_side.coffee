@@ -8,7 +8,7 @@ class @FakeServerSide
     @playlist = []
     @episodes = {}
 
-  getInitialStream: =>
+  getStream: =>
     new Stream(0, "http://188.40.32.140:8172/stream", "Kontestacja")
 
   checkAutoPlay: =>
@@ -58,15 +58,16 @@ class @FakeServerSide
       @loginSuccesful(new User(1, "xyz"))
 
     else
-      @loginUnsuccessful()
+      @loginUnsuccessful("Authentication failed - try again.")
 
 
   loginSuccesful: (user) =>
     @user = user
 
-  loginUnsuccessful: => 
+  loginUnsuccessful: (message) => 
+    @showAlert Alert(message)
 
   logOut: =>
     @user = null
 
-  showAlert: (alert) =>
+  showAlert: (message) =>

@@ -4,13 +4,27 @@ class @Glue
     [@useCase, @blogUseCase, @podcastsUseCase, @playlistUseCase] = useCases
     [@gui, @playlistGUI, @blogGUI, @podcastsGUI] = GUIs
 
-    After(@gui, "confirmStreamButtonClicked", (stream) => @useCase.streamProvided(stream))
-    After(@useCase, "start", => @gui.refreshPlayer(@server_side.getInitialStream()))
-    After(@gui, "getLiveStream", => @gui.refreshPlayer(@server_side.getInitialStream()))
-    After(@gui, "loginUser", (login, password) => @server_side.loginUser(login, password))
+    #Initial
+    After(@useCase, "start", => @gui.refreshPlayer(@server_side.getStream()))
 
-    After(@server_side, "loginSuccessful", (user) => @gui.loginSuccessful(user))
-    After(@server_side, "loginUnsuccessful",  => @gui.loginUnsuccessful())
+    #Login
+    After(@gui, "loginUser", (login, password) => @useCase.loginUser(login, password))
+    After(@useCase, "loginUser", (login, password) => @server_side.loginUser(login, password))
+
+    #Authentication successful
+    After(@server_side, "loginSuccessful", (user) => @useCase.loginSuccessful(user))
+    After(@useCase, "loginSuccessful", (user) => @gui.loginSuccessful(user))
+   
+    #Logout   
+    After(@gui, "logOut", => @useCase.logOut())
+    After(@useCase, "logOut", => @server_side.logOut())
+
+    #showing alerts
+    After(@server_side, "showAlert", (message) => @gui.showAlert(message))
+    After(@server_side, "showAlert", (message) => @gui.showAlert(message))
+
+    #Get live stream
+    After(@gui, "getLiveStream", => @gui.refreshPlayer(@server_side.getStream()))
 
     LogAll(@useCase)
     LogAll(@gui)

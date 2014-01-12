@@ -1,8 +1,5 @@
 class @GUI
   constructor: ->
-
-    @confirmStreamButton = $("#submit-stream-button")
-    @confirmStreamButton.click( => @confirmStreamButtonClicked(new Stream(1,$("#stream").val(), "Test")))
     $("#podcasts-playlist").sortable()
     $("#podcasts-playlist").selectable()
     $('#play_livestream').click( => @getLiveStream())
@@ -50,9 +47,9 @@ class @GUI
 
   loginUser: (login, password) =>
 
-  loginUnsuccessful: =>
-
   loginSuccessful: (user) =>
 
   logOut: =>
-    
+
+  showAlert: (message) =>
+    alert message.message

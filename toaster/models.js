@@ -78,4 +78,14 @@
 
   })();
 
+  this.Alert = (function() {
+
+    function Alert(message) {
+      this.message = message;
+    }
+
+    return Alert;
+
+  })();
+
 }).call(this);

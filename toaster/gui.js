@@ -4,9 +4,11 @@
   this.GUI = (function() {
 
     function GUI() {
-      this.loginSuccessful = __bind(this.loginSuccessful, this);
+      this.showAlert = __bind(this.showAlert, this);
 
-      this.loginUnsuccessful = __bind(this.loginUnsuccessful, this);
+      this.logOut = __bind(this.logOut, this);
+
+      this.loginSuccessful = __bind(this.loginSuccessful, this);
 
       this.loginUser = __bind(this.loginUser, this);
 
@@ -19,10 +21,6 @@
       this.createElementFor = __bind(this.createElementFor, this);
 
       var _this = this;
-      this.confirmStreamButton = $("#submit-stream-button");
-      this.confirmStreamButton.click(function() {
-        return _this.confirmStreamButtonClicked(new Stream(1, $("#stream").val(), "Test"));
-      });
       $("#podcasts-playlist").sortable();
       $("#podcasts-playlist").selectable();
       $('#play_livestream').click(function() {
@@ -78,9 +76,13 @@
 
     GUI.prototype.loginUser = function(login, password) {};
 
-    GUI.prototype.loginUnsuccessful = function() {};
-
     GUI.prototype.loginSuccessful = function(user) {};
+
+    GUI.prototype.logOut = function() {};
+
+    GUI.prototype.showAlert = function(message) {
+      return alert(message.message);
+    };
 
     return GUI;
 
